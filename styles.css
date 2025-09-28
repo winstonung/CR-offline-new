@@ -1,0 +1,255 @@
+@font-face {
+  font-family: 'ClashRoyale';
+  src: url('YouBlockhead.ttf') format('truetype'); /* Adjust the path */
+}
+
+
+.drawpile {
+  display: flex;
+  flex-direction: column;  /* stack vertically */
+  align-items: left;     /* center cards horizontally */
+  gap: 10px;               /* space between cards */
+  margin-bottom: 20px;     /* space below the next cards container */
+}
+
+.drawpile img {
+  width: 70px;            /* set card width */
+  height: auto;
+  display: block;
+}
+
+.drawpile-label-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.drawpile-label, span {
+  font-family: "ClashRoyale", sans-serif;
+  font-weight: bold;
+  font-size: 1.2vw;
+  color: #333;
+  user-select: none; /* optional: prevent text selection */
+}
+
+.activehand {
+  display: flex;
+  flex-direction: row;      /* cards side by side */
+  justify-content: center;  /* center cards horizontally */
+  gap: 15px;                /* space between cards */
+}
+
+.activehand .card {
+  display: flex;
+  flex-direction: column;   /* stack image + text vertically */
+  align-items: center;      /* center text under image */
+}
+
+.activehand img {
+  width: 100px;             /* card size */
+  height: auto;
+  display: block;
+}
+
+.activehand span , #cycle-limbo {
+  margin-top: 5px;
+  font-size: 1.5vw;
+  font-weight: bold;
+  color: #333;
+}
+
+.activehand {
+  display: flex;
+  justify-content: center;  /* keeps the group centered horizontally */
+  align-items: center;      /* centers limbo vertically with the activehand row */
+  gap: 80px;                /* adjust spacing between activehand and limbo */
+  margin-top: 20px;
+}
+
+.limbo img {
+  width: 100px;   /* same size as activehand cards */
+  height: auto;
+  display: block;
+}
+
+.card, .limbo {
+  position: relative;  /* parent is relative so child can be absolutely positioned */
+  display: inline-block;
+}
+
+.card span, .limbo span {
+  position: absolute;
+  left: 50%;         /* move horizontally to middle */
+  transform: translate(-50%, -100%);  /* perfect centering */
+  font-size: 1vw;
+  font-weight: bold;
+  color: #333;
+  background: rgba(255,255,255,0.7); /* optional: add contrast */
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* centers horizontally */
+  position: relative;   /* so results can be positioned relative */
+  margin-top: 20px;
+}
+
+#searchResults {
+  margin-top: 10px;
+  width: 25%;               /* match input width */
+  max-height: 300px;          /* optional: scroll if too many results */
+  overflow-y: auto;
+  font-family: "ClashRoyale", sans-serif;
+  justify-content: center;
+  font-size: 1vw;
+}
+
+#cardSearch {
+    width: 25%;
+    padding: 8px;
+    font-size: 1vw;
+    font-family: "ClashRoyale", sans-serif;
+  justify-content: center;
+}
+
+.search-card span {
+  flex: 1;               /* take remaining space */
+  text-align: center;    /* center text inside span */
+  font-size: 1vw;
+  
+}
+
+.search-card {
+  display: flex;
+  align-items: center;   /* vertical centering */
+  justify-content: center; /* optional: center as a group */
+  gap: 10px;             /* space between icon and text */
+  padding: 6px;
+}
+
+.search-card img {
+    width: 60px; /* icon size */
+    height: auto;
+}
+
+.search-card:hover, .search-card.selected {
+    background: #ddd;
+}
+
+.right-panel {
+  position: fixed;   /* keep it stuck to the screen */
+  right: 20px;       /* distance from right edge */
+  top: 20px;         /* distance from top */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  font-family: "ClashRoyale", sans-serif;
+}
+
+#undoButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: "ClashRoyale", sans-serif;
+  cursor: pointer;
+  border: 2px solid #333;
+  border-radius: 8px;
+  background: #eee;
+}
+
+#undoButton:hover {
+  background: #ddd;
+}
+
+.played-cards {
+  width: 180px;
+  max-height: 300px;
+  overflow-y: auto;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fafafa;
+}
+
+.played-cards h3 , h3 span {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  text-align: center;
+}
+
+.played-cards ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.played-cards li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  font-size: 0.9vw;
+}
+
+.played-cards li img {
+  width: 30px;
+  height: auto;
+}
+
+
+@media (max-width: 600px) {
+  .drawpile-label, span {
+    font-size: 2vw;
+  }
+
+  .drawpile img {
+    width: 8vw; /* make cards responsive */
+  }
+
+  .activehand img, .limbo img {
+    width: 12vw; /* make cards responsive */
+  }
+
+  .card span, .limbo span {
+    font-size: 3vw;
+  }
+
+  #cardSearch, #searchResults {
+    width: 80%; /* make search input responsive */
+    font-size: 16px;
+  }
+
+  #cycle-limbo {
+    font-size: 3vw;
+  }
+
+  .search-card span {
+    font-size: 4vw;
+  }
+
+  .search-card img {
+    width: 14vw; /* make icons responsive */
+    height: auto;
+  }
+
+  .played-cards {
+    width: 60%; /* make played cards responsive */
+    max-height: 30vh; /* limit height on small screens */
+  }
+
+  .played-cards h3 , h3 span, #undoButton {
+    font-size: 3vw;
+  }
+
+  .played-cards li {
+    font-size: 2vw;
+  }
+
+  .played-cards li img {
+    width: 8vw; /* make icons responsive */
+  }
+}
