@@ -275,6 +275,50 @@ function normalize(str) {
         .replace(/[^a-z0-9]/g, ""); // strip punctuation, dots, spaces
 }
 
+function parseSearch(raw) {
+    const q = raw.toLowerCase().trim();
+
+    if (q.startsWith("evo")) {
+        return {
+            type: "evolution",
+            rest: normalize(q.slice(3))
+        };
+    }
+
+    if (q.startsWith("hero")) {
+        return {
+            type: "hero",
+            rest: normalize(q.slice(4))
+        };
+    }
+
+    return {
+        type: "normal",
+        rest: normalize(q)
+    };
+}
+
+function matchesSearch(card, rawInput) {
+    const { type, rest } = parseSearch(rawInput);
+    const name = card.name.toLowerCase();
+    const normName = normalize(name);
+
+    // EVO search
+    if (type === "evolution") {
+        if (!name.includes("(evolution)")) return false;
+        return rest === "" || normName.includes(rest);
+    }
+
+    // HERO search
+    if (type === "hero") {
+        if (!name.includes("hero")) return false;
+        return rest === "" || normName.includes(rest);
+    }
+
+    // Normal search
+    return normName.includes(rest);
+}
+
 searchInput.addEventListener("input", () => {
     const query = normalize(searchInput.value);
     resultsDiv.innerHTML = ""; // clear old results
@@ -283,7 +327,7 @@ searchInput.addEventListener("input", () => {
 
     for (let key in cards) {
         const card = cards[key];
-        if (normalize(card.name).includes(query)) {
+        if (matchesSearch(card, searchInput.value)) {
             const cardDiv = document.createElement("div");
             cardDiv.classList.add("search-card");
 

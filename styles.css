@@ -96,12 +96,13 @@
   align-items: center;  /* centers horizontally */
   position: relative;   /* so results can be positioned relative */
   margin-top: 20px;
+  width: 100%;
 }
 
 #searchResults {
   margin-top: 10px;
-  width: 25%;               /* match input width */
-  max-height: 300px;          /* optional: scroll if too many results */
+  width: 100%;               /* match input width */
+  max-height: 400px;          /* optional: scroll if too many results */
   overflow-y: auto;
   font-family: "ClashRoyale", sans-serif;
   justify-content: center;
@@ -109,7 +110,7 @@
 }
 
 #cardSearch {
-    width: 25%;
+    width: 55%;
     padding: 8px;
     font-size: 1vw;
     font-family: "ClashRoyale", sans-serif;
@@ -119,7 +120,7 @@
 .search-card span {
   flex: 1;               /* take remaining space */
   text-align: center;    /* center text inside span */
-  font-size: 1vw;
+  font-size: 0.8vw;
   
 }
 
@@ -129,6 +130,8 @@
   justify-content: center; /* optional: center as a group */
   gap: 10px;             /* space between icon and text */
   padding: 6px;
+  width: 100%;
+  word-break: break-word; 
 }
 
 .search-card img {
